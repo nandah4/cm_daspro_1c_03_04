@@ -76,14 +76,14 @@ public class App {
     }
 
     static int tambahItemBaru(String[][] dataInventori, int barisSelanjutnya) {
-        if (dataInventori.length > 10) {
-            System.out.println("Inventory penuh! Tidak dapat menambahkan item baru.");
-            return barisSelanjutnya;
-        }
-
         int nextRowUpdate = barisSelanjutnya;
 
         LOOP_TAMBAHITEM: while (true) {
+            if (nextRowUpdate >= dataInventori.length) {
+                System.out.println("Inventory penuh! Tidak dapat menambahkan item baru.");
+                break;
+            }
+
             System.out.println("===== TAMBAH ITEM BARU =====");
 
             String namaItem, kategoriItem, stokItem;
@@ -116,16 +116,20 @@ public class App {
                     break;
                 }
             }
-            dataInventori[nextRowUpdate] = new String[] { Integer.toString(dataInventori.length + 1), namaItem,
-                    kategoriItem, stokItem };
+
+            dataInventori[nextRowUpdate] = new String[] {
+                    Integer.toString(nextRowUpdate + 1), namaItem, kategoriItem, stokItem
+            };
+
             System.out.println(
                     "Item baru berhasil ditambahkan: " + namaItem + " (" + kategoriItem + ") " + " - Stok: "
                             + stokItem);
 
+            nextRowUpdate++;
+
             System.out.print("Kembali ke menu utama? (y/n) ");
             char innerMenu = sc.nextLine().charAt(0);
 
-            nextRowUpdate = nextRowUpdate + 1;
             if (innerMenu == 'y' || innerMenu == 'Y') {
                 break;
             } else if (innerMenu == 'n' || innerMenu == 'N') {
@@ -136,7 +140,6 @@ public class App {
             }
         }
         return nextRowUpdate;
-
     }
 
     public static void main(String[] args) {
