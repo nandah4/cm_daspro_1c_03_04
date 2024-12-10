@@ -21,6 +21,7 @@ public class App {
 
         System.out.println();
     }
+    
 
     static void tambahStok(String[][] dataInventori) {
         System.out.println("===== TAMBAH STOK =====");
