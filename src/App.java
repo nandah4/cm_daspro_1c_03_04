@@ -29,7 +29,7 @@ public class App {
             }
             System.out.println();
 
-            System.out.println("Kembali ke menu utama? (y/n)");
+            System.out.print("Kembali ke menu utama? (y/n) ");
             char innerMenu = sc.nextLine().charAt(0);
             if (innerMenu == 'y' || innerMenu == 'Y') {
                 break;
@@ -81,23 +81,51 @@ public class App {
             return barisSelanjutnya;
         }
 
+        int nextRowUpdate = barisSelanjutnya;
+
         LOOP_TAMBAHITEM: while (true) {
             System.out.println("===== TAMBAH ITEM BARU =====");
-            System.out.print("Masukkan nama item baru: ");
-            String namaItem = sc.nextLine().trim();
-            System.out.print("Masukkan kategori item baru: ");
-            String kategoriItem = sc.nextLine().trim();
-            System.out.print("Masukkan jumlah stok awal: ");
-            String stokItem = sc.nextLine().trim();
 
-            dataInventori[barisSelanjutnya] = new String[] { Integer.toString(dataInventori.length + 1), namaItem,
+            String namaItem, kategoriItem, stokItem;
+
+            LOOP_INPUTNAME: while (true) {
+                System.out.print("Masukkan nama item baru: ");
+                namaItem = sc.nextLine().trim();
+
+                if (namaItem.isEmpty()) {
+                    System.out.println("Nama tidak boleh kosong");
+                    continue LOOP_INPUTNAME;
+                } else {
+                    break LOOP_INPUTNAME;
+                }
+            }
+
+            System.out.print("Masukkan kategori item baru: ");
+            kategoriItem = sc.nextLine().trim();
+
+            while (true) {
+                System.out.print("Masukkan jumlah stok awal: ");
+                stokItem = sc.nextLine().trim();
+                if (stokItem.isEmpty()) {
+                    System.out.println("Stok tidak boleh kosong");
+                    continue;
+                } else if (Integer.parseInt(stokItem) < 1) {
+                    System.out.println("Stok tidak boleh < 1");
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            dataInventori[nextRowUpdate] = new String[] { Integer.toString(dataInventori.length + 1), namaItem,
                     kategoriItem, stokItem };
             System.out.println(
                     "Item baru berhasil ditambahkan: " + namaItem + " (" + kategoriItem + ") " + " - Stok: "
                             + stokItem);
 
-            System.out.println("Kembali ke menu utama? (y/n)");
+            System.out.print("Kembali ke menu utama? (y/n) ");
             char innerMenu = sc.nextLine().charAt(0);
+
+            nextRowUpdate = nextRowUpdate + 1;
             if (innerMenu == 'y' || innerMenu == 'Y') {
                 break;
             } else if (innerMenu == 'n' || innerMenu == 'N') {
@@ -107,19 +135,8 @@ public class App {
                 continue LOOP_TAMBAHITEM;
             }
         }
-        return barisSelanjutnya++;
-    }
+        return nextRowUpdate;
 
-    static void Keluar() {
-        System.out.println("Apakah anda ingin keluar? (y/n)");
-        String jawaban = sc.next();
-
-        if (jawaban.equalsIgnoreCase("y")) {
-            System.out.println("Terima kasih telah menggunakan program ini!");
-            System.exit(0);
-        } else if (jawaban.equalsIgnoreCase("n")) {
-            System.out.println("Kembali ke menu utama");
-        }
     }
 
     public static void main(String[] args) {
@@ -146,9 +163,9 @@ public class App {
             } else if (pilihanMenu == 2) {
 
             } else if (pilihanMenu == 3) {
-                tambahItemBaru(dataInventori, barisSelanjutnya);
+                barisSelanjutnya = tambahItemBaru(dataInventori, barisSelanjutnya);
             } else if (pilihanMenu == 4) {
-                Keluar();
+                System.out.println("Terima kasih telah menggunakan program ini!");
                 break OUTER_LOOP;
             } else {
                 continue OUTER_LOOP;
