@@ -6,34 +6,55 @@ public class App {
 
     static void tampilkanInventori(String[][] dataInventori, String[] namaHeader) {
         System.out.println("===== DATA INVENTORI =====");
-        System.out.printf("%-15s", namaHeader[0]);
+        System.out.printf("%-12s", namaHeader[0]);
         for (int h = 1; h < namaHeader.length; h++) {
-            System.out.printf("%15s", namaHeader[h]);
+            System.out.printf("%12s", namaHeader[h]);
         }
         System.out.println();
+        System.out.println("-------------------------------------------------");
 
         for (int i = 0; i < dataInventori.length; i++) {
-            System.out.print(i);
+            System.out.printf("%-12s", i + 1);
             for (int j = 0; j < dataInventori[i].length; j++) {
-                System.out.print(dataInventori[i][j] + "\t");
+                System.out.printf("%12s", dataInventori[i][j]);
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+    }
+
+    static void tambahStok(String[][] dataInventori) {
+        System.out.println("===== TAMBAH STOK =====");
+        System.out.print("Masukkan nomor item: ");
+        int nomorItem = sc.nextInt();
+        sc.nextLine();
+
+        boolean itemAda = false;
+
+        for (int i = 0; i < dataInventori.length; i++) {
+            if (i == nomorItem - 1) {
+                System.out.print("Masukkan jumlah stok yang akan ditambahkan: ");
+                int jumlahStok = sc.nextInt();
+                sc.nextLine();
+
             }
         }
 
-        System.out.println();
     }
 
     public static void main(String[] args) {
         String[] namaHeader = { "No", "Nama Item", "Kategori", "Stok" };
 
         String[][] dataInventori = {
-                {
-                        "Kopi Hitam", "Minuman", "10",
-                        "Cappuccino", "Minuman", "5",
-                        "Teh", "Minuman", "8",
-                }
+                { "Kopi Hitam", "Minuman", "10" },
+                { "Cappuccino", "Minuman", "5" },
+                { "Teh", "Minuman", "8" },
         };
 
-        OUTER_LOOP: while (true) {
+        OUTER_LOOP: while (true)
+
+        {
             System.out.println("===== MENU INVENTORI KAFE =====");
 
             System.out.println("1. Tampilkan Inventori");
