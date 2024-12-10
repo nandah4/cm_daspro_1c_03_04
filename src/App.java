@@ -23,7 +23,6 @@ public class App {
 
         System.out.println();
     }
-    
 
     static void tambahStok(String[][] dataInventori) {
         System.out.println("===== TAMBAH STOK =====");
@@ -43,7 +42,6 @@ public class App {
         sc.nextLine();
         int stokAwal = Integer.parseInt(dataInventori[i][2]);
         int stokBaru = stokAwal + jumlahStok;
-
 
         System.out.println("Stok untuk " + dataInventori[i][0] + " berhasil ditambahkan. Stok baru: " + stokBaru);
     }
@@ -82,8 +80,6 @@ public class App {
             } else if (pilihanMenu == 4) {
                 Keluar();
                 break OUTER_LOOP;
-            } else {
-                continue OUTER_LOOP;
             }
 
         }
