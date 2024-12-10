@@ -22,8 +22,10 @@ public class App {
             } else if (pilihanMenu == 3) {
 
             } else if (pilihanMenu == 4) {
+                System.out.println("Terima kasih telah menggunakan aplikasi Inventori Kafe.");
                 break OUTER_LOOP;
             } else {
+                System.out.println("Pilihan menu tidak valid. Silakan coba lagi.");
                 continue OUTER_LOOP;
             }
 
