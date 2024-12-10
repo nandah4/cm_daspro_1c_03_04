@@ -44,7 +44,6 @@ public class App {
         int stokAwal = Integer.parseInt(dataInventori[i][2]);
         int stokBaru = stokAwal + jumlahStok;
 
-        dataInventori[i][2] = Integer.toString(stokBaru);
 
         System.out.println("Stok untuk " + dataInventori[i][0] + " berhasil ditambahkan. Stok baru: " + stokBaru);
     }
