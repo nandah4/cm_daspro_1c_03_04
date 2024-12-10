@@ -15,8 +15,9 @@ public class App {
         for (int i = 0; i < dataInventori.length; i++) {
             System.out.print(i);
             for (int j = 0; j < dataInventori[i].length; j++) {
-                System.out.print(dataInventori[i][j] + "\t");
+                System.out.print(dataInventori[i][j]);
             }
+            System.out.println();
         }
 
         System.out.println();
