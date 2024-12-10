@@ -22,26 +22,6 @@ public class App {
         System.out.println();
     }
 
-    static void tambahStok(String[][] dataInventori) {
-        System.out.println("===== TAMBAH STOK =====");
-        System.out.print("Masukkan nomor item: ");
-        int nomorItem = sc.nextInt();
-        sc.nextLine();
-
-        boolean itemAda = false;
-
-        for (int i = 0; i < dataInventori.length; i++) {
-            if (i == nomorItem -1) {
-                System.out.print("Masukkan jumlah stok yang akan ditambahkan: ");
-                int jumlahStok = sc.nextInt();
-                sc.nextLine();
-
-                
-            }
-        }
-        
-    }
-
     public static void main(String[] args) {
         String[] namaHeader = { "No", "Nama Item", "Kategori", "Stok" };
 
@@ -66,7 +46,7 @@ public class App {
             if (pilihanMenu == 1) {
                 tampilkanInventori(dataInventori, namaHeader);
             } else if (pilihanMenu == 2) {
-                tambahStok(dataInventori);
+
             } else if (pilihanMenu == 3) {
 
             } else if (pilihanMenu == 4) {
