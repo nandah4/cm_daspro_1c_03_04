@@ -24,51 +24,11 @@ public class App {
         System.out.println();
     }
 
-    static void tambahStok(String[][] dataInventori) {
-        System.out.println("===== TAMBAH STOK =====");
-        System.out.print("Masukkan nomor item: ");
-        int nomorItem = sc.nextInt();
-        sc.nextLine(); 
-
-        boolean itemAda = false;
-
-        for (int i = 0; i < dataInventori.length; i++) {
-            if (i == nomorItem - 1) {
-                System.out.print("Masukkan jumlah stok yang akan ditambahkan: ");
-                int jumlahStok = sc.nextInt();
-                sc.nextLine(); 
-
-             
-                String stokLama = dataInventori[i][3];
-
-               
-                int stokAwal = Integer.parseInt(stokLama);
-                int stokBaru = stokAwal + jumlahStok;
-
-                dataInventori[i][3] = Integer.toString(stokBaru);
-
-                System.out.println("Stok untuk " + dataInventori[i][1] + " berhasil ditambahkan. Stok baru: " + stokBaru);
-                itemAda = true;
-                break;
-            }
-        }
-
-        if (!itemAda) {
-            System.out.println("Item dengan nomor tersebut tidak ditemukan.");
-        }
-    }
+   
 
     static void Keluar() {
-            System.out.println("Apakah anda ingin keluar? (y/n)");
-            String jawaban = sc.next();
-
-            if (jawaban.equalsIgnoreCase("y")) {
-                System.out.println("Terima kasih telah menggunakan program ini!");
-                System.exit(0);
-            }else if (jawaban.equalsIgnoreCase("n")) {
-                System.out.println("Kembali ke menu utama");
-            }
-        }
+        System.out.println("Terimakasih Telah Menggunakan Aplikasi Inventori Kafe");
+    }
 
     public static void main(String[] args) {
         String[] namaHeader = { "No", "Nama Item", "Kategori", "Stok" };
@@ -94,7 +54,7 @@ public class App {
             if (pilihanMenu == 1) {
                 tampilkanInventori(dataInventori, namaHeader);
             } else if (pilihanMenu == 2) {
-
+                tambahStok(dataInventori);
             } else if (pilihanMenu == 3) {
 
             } else if (pilihanMenu == 4) {
