@@ -24,7 +24,29 @@ public class App {
         System.out.println();
     }
 
-   
+    static void tambahStok(String[][] dataInventori) {
+        System.out.println("===== TAMBAH STOK =====");
+        System.out.print("Masukkan nomor item: ");
+        int nomorItem = sc.nextInt();
+        sc.nextLine();
+
+        if (nomorItem < 1 || nomorItem > dataInventori.length) {
+            System.out.println("Nomor item tidak valid.");
+            return;
+        }
+
+        int i = nomorItem - 1;
+
+        System.out.print("Masukkan jumlah stok yang akan ditambahkan: ");
+        int jumlahStok = sc.nextInt();
+        sc.nextLine();
+        int stokAwal = Integer.parseInt(dataInventori[i][2]);
+        int stokBaru = stokAwal + jumlahStok;
+
+        dataInventori[i][2] = Integer.toString(stokBaru);
+
+        System.out.println("Stok untuk " + dataInventori[i][0] + " berhasil ditambahkan. Stok baru: " + stokBaru);
+    }
 
     static void Keluar() {
         System.out.println("Terimakasih Telah Menggunakan Aplikasi Inventori Kafe");
