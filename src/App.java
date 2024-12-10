@@ -43,44 +43,36 @@ public class App {
     }
 
     static void tambahStok(String[][] dataInventori) {
-        System.out.println("===== TAMBAH STOK =====");
-        System.out.print("Masukkan nomor item: ");
+        System.out.println("===== TAMBAH STOK ITEM =====");
+        System.out.print("Pilih nomor item yang ingin ditambah stok: ");
         int nomorItem = sc.nextInt();
-        sc.nextLine();
+        sc.nextLine(); 
 
-        if (nomorItem < 1 || nomorItem > dataInventori.length) {
+        if (nomorItem < 1 || nomorItem > dataInventori.length || dataInventori[nomorItem - 1][0] == null) {
             System.out.println("Nomor item tidak valid.");
             return;
         }
 
-        for (int i = 0; i < dataInventori.length; i++) {
-            if (i == nomorItem - 1) {
-                System.out.print("Masukkan jumlah stok yang akan ditambahkan: ");
-                int jumlahStok = sc.nextInt();
-                sc.nextLine();
-
-                String stokLama = dataInventori[i][3];
-
-                int stokAwal = Integer.parseInt(stokLama);
-                int stokBaru = stokAwal + jumlahStok;
-
-                dataInventori[i][3] = Integer.toString(stokBaru);
-
-                System.out
-                        .println("Stok untuk " + dataInventori[i][1] + " berhasil ditambahkan. Stok baru: " + stokBaru);
-                break;
-            }
-        }
-
-        int i = nomorItem - 1;
+        int i = nomorItem - 1; 
 
         System.out.print("Masukkan jumlah stok yang akan ditambahkan: ");
         int jumlahStok = sc.nextInt();
-        sc.nextLine();
-        int stokAwal = Integer.parseInt(dataInventori[i][2]);
+        sc.nextLine(); 
+
+        
+        if (jumlahStok <= 0) {
+            System.out.println("Jumlah stok yang dimasukkan tidak valid. Stok harus lebih dari 0.");
+            return;
+        }
+
+        int stokAwal = Integer.parseInt(dataInventori[i][3]); 
         int stokBaru = stokAwal + jumlahStok;
 
-        System.out.println("Stok untuk " + dataInventori[i][0] + " berhasil ditambahkan. Stok baru: " + stokBaru);
+        
+        dataInventori[i][3] = Integer.toString(stokBaru);
+
+        
+        System.out.println("Stok untuk " + dataInventori[i][1] + " berhasil ditambahkan. Stok baru: " + stokBaru);
     }
 
     static int tambahItemBaru(String[][] dataInventori, int barisSelanjutnya) {
@@ -149,7 +141,6 @@ public class App {
 
     public static void main(String[] args) {
         String[] namaHeader = { "No", "Nama Item", "Kategori", "Stok" };
-
         String[][] dataInventori = new String[10][4];
         int barisSelanjutnya = 0;
 
