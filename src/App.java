@@ -1,9 +1,37 @@
 import java.util.Scanner;
 
 public class App {
+
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) throws Exception {
+    static void tampilkanInventori(String[][] dataInventori, String[] namaHeader) {
+        System.out.println("===== DATA INVENTORI =====");
+        System.out.printf("%-15s", namaHeader[0]);
+        for (int h = 1; h < namaHeader.length; h++) {
+            System.out.printf("%15s", namaHeader[h]);
+        }
+        System.out.println();
+
+        for (int i = 0; i < dataInventori.length; i++) {
+            System.out.print(i);
+            for (int j = 0; j < dataInventori[i].length; j++) {
+                System.out.print(dataInventori[i][j] + "\t");
+            }
+        }
+
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        String[] namaHeader = { "No", "Nama Item", "Kategori", "Stok" };
+
+        String[][] dataInventori = {
+                {
+                        "Kopi Hitam", "Minuman", "10",
+                        "Cappuccino", "Minuman", "5",
+                        "Teh", "Minuman", "8",
+                }
+        };
 
         OUTER_LOOP: while (true) {
             System.out.println("===== MENU INVENTORI KAFE =====");
@@ -16,7 +44,7 @@ public class App {
             int pilihanMenu = sc.nextInt();
 
             if (pilihanMenu == 1) {
-
+                tampilkanInventori(dataInventori, namaHeader);
             } else if (pilihanMenu == 2) {
 
             } else if (pilihanMenu == 3) {
